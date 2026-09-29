@@ -83,7 +83,7 @@ unset($_SESSION['resultado_guardar_cancha']);
                         <td><?php echo htmlspecialchars($c['nombre']); ?></td>
                         <td class="col-acciones">
                             <a href="editar_cancha.php?id=<?php echo $c['id']; ?>" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="eliminar_cancha.php?id=<?php echo $c['id']; ?>" class="btn btn-sm btn-danger">Eliminar</a>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarEliminarCancha" data-delete-url="eliminar_cancha.php?id=<?php echo (int)$c['id']; ?>">Eliminar</button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -96,7 +96,26 @@ unset($_SESSION['resultado_guardar_cancha']);
         </div>
     </div>
 </div>
+<div class="modal fade" id="confirmarEliminarCancha" tabindex="-1" aria-labelledby="confirmarEliminarCanchaTitulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmarEliminarCanchaTitulo">Confirmar eliminación</h5>
+            </div>
+            <div class="modal-body">¿Seguro que quieres eliminar esta cancha?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="#" id="confirmarEliminarCanchaBoton" class="btn btn-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('confirmarEliminarCancha').addEventListener('show.bs.modal', function (event) {
+        document.getElementById('confirmarEliminarCanchaBoton').href = event.relatedTarget.dataset.deleteUrl;
+    });
+</script>
 <?php if ($alerta): ?>
     <script>
         new bootstrap.Modal(document.getElementById('alertaCancha')).show();
