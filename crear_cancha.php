@@ -2,34 +2,63 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva Cancha</title>
-    <style>
-        .hoyo-row { margin-bottom: 5px; }
-        .hoyo-label { display: inline-block; width: 80px; }
-    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="estilos.css" rel="stylesheet">
+    <script src="fondo.js?v=<?php echo filemtime(__DIR__ . '/fondo.js'); ?>" defer></script>
 </head>
-<body>
-    <div class="container" style="margin-top: 20px;">
-    <h2>Crear Nueva Cancha</h2>
-    <form action="guardar_cancha.php" method="POST">
-        <input type="text" name="nombre" placeholder="Nombre de la Cancha" required><br><br>
-        <input type="number" step="0.1" name="slope" placeholder="Slope (opcional)">
-        <input type="number" step="0.1" name="rating" placeholder="Rating (opcional)"><br><br>
-        
-        <h3>Pares de los 18 hoyos</h3>
-        <?php for ($i = 1; $i <= 18; $i++): ?>
-            <div class="hoyo-row">
-                <span class="hoyo-label">Hoyo <?php echo $i; ?>:</span>
-                <input type="radio" name="par_<?php echo $i; ?>" value="3" id="p3_<?php echo $i; ?>"> <label for="p3_<?php echo $i; ?>">Par 3</label>
-                <input type="radio" name="par_<?php echo $i; ?>" value="4" id="p4_<?php echo $i; ?>" checked> <label for="p4_<?php echo $i; ?>">Par 4</label>
-                <input type="radio" name="par_<?php echo $i; ?>" value="5" id="p5_<?php echo $i; ?>"> <label for="p5_<?php echo $i; ?>">Par 5</label>
+<body class="bg-light">
+    <div class="container mt-5 mb-5">
+        <div class="card shadow mx-auto" style="max-width: 720px;">
+            <div class="card-body p-5">
+                <h1 class="h4 mb-2">Crear Nueva Cancha</h1>
+                <form action="guardar_cancha.php" method="POST">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label fw-bold">Nombre de la cancha</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="slope" class="form-label fw-bold">Slope (opcional)</label>
+                            <input type="number" step="0.1" class="form-control" id="slope" name="slope">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="rating" class="form-label fw-bold">Rating (opcional)</label>
+                            <input type="number" step="0.1" class="form-control" id="rating" name="rating">
+                        </div>
+                    </div>
+
+                    <h5 class="mb-2">Pares de los 18 hoyos</h5>
+                    <div class="row g-4 mb-3">
+                        <?php for ($columna = 0; $columna < 2; $columna++): ?>
+                            <div class="col-12 col-md-6">
+                                <div class="row g-2">
+                                    <?php for ($i = $columna * 9 + 1; $i <= ($columna + 1) * 9; $i++): ?>
+                                        <div class="col-12">
+                                            <div class="border rounded p-2 d-flex align-items-center justify-content-between gap-3">
+                                                <span class="fw-bold small text-nowrap flex-shrink-0">Hoyo <?php echo $i; ?></span>
+                                                <div class="d-flex gap-2 flex-shrink-0">
+                                                    <?php foreach ([3, 4, 5] as $par): ?>
+                                                        <div class="form-check form-check-inline me-0 small">
+                                                            <input class="form-check-input" type="radio" name="par_<?php echo $i; ?>" value="<?php echo $par; ?>" id="p<?php echo $par; ?>_<?php echo $i; ?>" <?php echo $par === 4 ? 'checked' : ''; ?>>
+                                                            <label class="form-check-label" for="p<?php echo $par; ?>_<?php echo $i; ?>"><?php echo $par; ?></label>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endfor; ?>
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Guardar Cancha</button>
+                </form>
+                <a href="listar_canchas.php" class="btn btn-secondary w-100 mt-3">Volver a Canchas</a>
             </div>
-        <?php endfor; ?>
-        
-        <br>
-        <button type="submit">Guardar Cancha</button>
-    </form>
+        </div>
     </div>
 </body>
 </html>

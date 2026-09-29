@@ -1,4 +1,5 @@
 <?php
+require 'auth.php'; 
 require 'conexion.php';
 
 if ($pdo) {
