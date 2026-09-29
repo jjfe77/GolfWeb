@@ -11,6 +11,7 @@
 
     function iniciarFondo({ imagenes, imagenesAnuncios }) {
     const consultaAnunciosLaterales = window.matchMedia('(min-width: 1280px)');
+    const publicidadActiva = false;
     const duracionImagen = 6000;
     const duracionFundido = 1800;
     const claveEstado = 'golf_app_fondo_rotativo';
@@ -27,7 +28,7 @@
     capaB.setAttribute('aria-hidden', 'true');
     document.body.prepend(capaA, capaB);
 
-    const mostrarAnuncios = !document.body.hasAttribute('data-sin-anuncios');
+    const mostrarAnuncios = publicidadActiva && !document.body.hasAttribute('data-sin-anuncios');
     let contenedorAnuncios;
     if (mostrarAnuncios) {
         contenedorAnuncios = document.createElement('div');
