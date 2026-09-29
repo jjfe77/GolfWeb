@@ -11,6 +11,8 @@ if (!isset($_SESSION['user_id'])) {
 $canchas = $pdo->query("SELECT * FROM canchas")->fetchAll();
 $alerta = $_SESSION['alerta_canchas'] ?? null;
 unset($_SESSION['alerta_canchas']);
+$resultado_guardar = $_SESSION['resultado_guardar_cancha'] ?? null;
+unset($_SESSION['resultado_guardar_cancha']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,6 +50,26 @@ unset($_SESSION['alerta_canchas']);
                 </div>
             <?php endif; ?>
 
+            <?php if ($resultado_guardar): ?>
+                <div class="modal fade" id="resultadoGuardarCancha" tabindex="-1" aria-labelledby="resultadoGuardarCanchaTitulo" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="resultadoGuardarCanchaTitulo">
+                                    <?php echo $resultado_guardar['exito'] ? 'Cancha guardada' : 'No se pudo guardar'; ?>
+                                </h5>
+                            </div>
+                            <div class="modal-body"><?php echo htmlspecialchars($resultado_guardar['mensaje']); ?></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                    <?php echo $resultado_guardar['exito'] ? 'Continuar' : 'Aceptar'; ?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <table class="table table-striped table-hover tabla-gestion">
                 <thead class="table-dark">
                     <tr>
@@ -78,6 +100,11 @@ unset($_SESSION['alerta_canchas']);
 <?php if ($alerta): ?>
     <script>
         new bootstrap.Modal(document.getElementById('alertaCancha')).show();
+    </script>
+<?php endif; ?>
+<?php if ($resultado_guardar): ?>
+    <script>
+        new bootstrap.Modal(document.getElementById('resultadoGuardarCancha')).show();
     </script>
 <?php endif; ?>
 </body>
