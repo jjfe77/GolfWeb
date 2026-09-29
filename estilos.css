@@ -1,0 +1,128 @@
+body {
+    min-height: 100vh;
+    isolation: isolate;
+    background-color: #f8f9fa;
+    background-image: none;
+}
+
+.fondo-rotativo-capa {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.8s ease-in-out;
+}
+
+.fondo-rotativo-capa.activa {
+    opacity: 1;
+}
+
+.anuncios-publicitarios {
+    display: flex;
+    gap: 10px;
+    margin: 12px 12px 18px;
+}
+
+.anuncio-lateral {
+    position: relative;
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 126px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+}
+
+.anuncio-imagen {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1.8s ease-in-out;
+}
+
+.anuncio-imagen.activa {
+    opacity: 1;
+}
+
+.anuncio-etiqueta {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 7px 5px;
+    background: rgba(255, 255, 255, 0.88);
+    color: #173b2b;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+@media (min-width: 1280px) {
+    .container,
+    .container-fluid {
+        max-width: calc(100vw - 520px);
+    }
+
+    .anuncios-publicitarios {
+        display: contents;
+    }
+
+    .anuncio-lateral {
+        position: fixed;
+        top: 50%;
+        z-index: 2;
+        width: 115px;
+        height: min(70vh, 760px);
+        min-height: 300px;
+        transform: translateY(-50%);
+    }
+
+    .anuncio-lateral-izquierdo {
+        left: 16px;
+    }
+
+    .anuncio-lateral-derecho {
+        right: 16px;
+    }
+
+    .anuncio-imagen {
+        bottom: 42px;
+        background-color: #e9eee9;
+        background-size: contain;
+    }
+
+    .anuncio-etiqueta {
+        padding: 12px 8px;
+        font-size: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fondo-rotativo-capa,
+    .anuncio-imagen {
+        transition: none;
+    }
+}
+
+/* Transparencia para las tarjetas y las alertas de error */
+.card, .alert {
+    background-color: rgba(200, 200, 200, 0.5) !important;
+    border: none;
+}
+
+.tabla-gestion th.col-acciones,
+.tabla-gestion td.col-acciones {
+    width: 1%;
+    text-align: right;
+    white-space: nowrap;
+}
