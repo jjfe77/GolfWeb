@@ -35,7 +35,7 @@ $jugadores = $pdo->query("SELECT * FROM jugadores")->fetchAll();
                         <div class="border p-3 rounded bg-white">
                             <?php foreach ($jugadores as $j): ?>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="jugadores[]" value="<?php echo $j['id']; ?>" id="jugador_<?php echo $j['id']; ?>">
+                                    <input class="form-check-input" style="border: 1px solid black !important;" type="checkbox" name="jugadores[]" value="<?php echo $j['id']; ?>" id="jugador_<?php echo $j['id']; ?>">
                                     <label class="form-check-label" for="jugador_<?php echo $j['id']; ?>">
                                         <?php echo htmlspecialchars($j['nombre']); ?>
                                     </label>

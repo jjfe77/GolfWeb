@@ -55,7 +55,7 @@ $partidas = $stmt->fetchAll();
                     </div>
                     <?php if ($fecha !== ''): ?>
                         <div class="col-auto">
-                            <a href="listar_partidas.php" class="btn btn-outline-secondary">Mostrar todas</a>
+                            <a href="listar_partidas.php" class="btn btn-secondary">Mostrar todas</a>
                         </div>
                     <?php endif; ?>
                 </form>

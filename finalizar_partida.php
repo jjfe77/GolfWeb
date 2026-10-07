@@ -77,7 +77,7 @@ foreach ($todos_los_scores as $score) {
                                 <?php for ($i = 1; $i <= 18; $i++): ?>
                                     <th scope="col"><?php echo $i; ?></th>
                                     <?php if ($i === 9): ?><th scope="col" class="score-summary">Ida</th><?php endif; ?>
-                                    <?php if ($i === 18): ?><th scope="col" class="score-summary">Vuelta</th><?php endif; ?>
+                                    <?php if ($i === 18): ?><th scope="col" class="score-summary ">Vta</th><?php endif; ?>
                                 <?php endfor; ?>
                                 <th scope="col" class="score-summary score-summary-gross">Gross</th>
                                 <th scope="col" class="score-summary score-summary-hcp">HCP</th>
@@ -119,7 +119,7 @@ foreach ($todos_los_scores as $score) {
                 </div>
                 <div class="d-flex flex-wrap gap-2">
                     <a href="jugar.php?partida_id=<?php echo urlencode($partida_id); ?>&amp;hoyo=1&amp;modo=editar" class="btn btn-warning">Editar</a>
-                    <a href="listar_partidas.php<?php echo $fecha_historial !== '' ? '?fecha=' . urlencode($fecha_historial) : ''; ?>" class="btn btn-outline-primary">Volver al historial</a>
+                    <a href="listar_partidas.php<?php echo $fecha_historial !== '' ? '?fecha=' . urlencode($fecha_historial) : ''; ?>" class="btn btn-primary">Volver al historial</a>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarEliminarPartida">Eliminar partida</button>
                     <a href="panel.php" class="btn btn-secondary">Guardar y salir</a>
                 </div>
